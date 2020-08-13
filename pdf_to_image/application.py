@@ -1,5 +1,4 @@
 import pdf2image
-import sys
 from PIL.PpmImagePlugin import PpmImageFile
 
 import pdf_to_image.services as services
