@@ -1,4 +1,5 @@
 import sys
+import threads
 from alameda import services
 from alameda import getData
 
@@ -14,14 +15,17 @@ def process(path):
     result = []
     for image in images:
         data_dict = services.get_data_as_dict(image)
+        data_string = services.combine_text(data_dict['text'])
 
         # just for demo purpose, comment this when not in use
         # services.write_in_tmp(data_dict)
 
         # extract data from dictionary
-        result.append(getData.get_data(data_dict))
+        print('For Image {}'.format(images.index(image) + 1))
+        result.append(getData.get_data(data_dict, data_string))
 
     print('Result : ', result)
+    services.store_result('tmp/result.json', result)
 
 
 if __name__ == '__main__':
